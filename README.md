@@ -110,7 +110,7 @@ Elec2 is downloaded automatically by River on first run. The script prints per-s
 
 ## Credits
 
-Team project built together with [Pablo Fernández (@appuchias)](https://github.com/appuchias) and Miguel Planas. Miguel led the federated experiments (models, runs and metrics tracking), Pablo built the streaming pipeline, and I worked on the federated side: the ResNet/MobileNet adaptations, the IID vs Non-IID partitioning logic, training fixes and the experiment tooling. The Flower app started from Flower's public PyTorch quickstart scaffolding.
+Team project built together with [Pablo Fernández (@appuchias)](https://github.com/appuchias) and [Miguel Planas (@miguelplanas)](https://github.com/miguelplanas). The Flower app started from Flower's public PyTorch quickstart scaffolding.
 
 ## References
 
