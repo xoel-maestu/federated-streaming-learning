@@ -1,0 +1,51 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "federated-fashion-mnist"
+version = "1.0.0"
+description = "FedAvg vs FedProx on Fashion-MNIST with Flower and PyTorch"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Xoel Maestu", email = "xoel.maestu@gmail.com" },
+]
+dependencies = [
+    "flwr[simulation]>=1.23.0,<1.24.0",
+    "flwr-datasets[vision]>=0.5.0",
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    "matplotlib",
+    "toml",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+[tool.flwr.app]
+publisher = "xoel-maestu"
+
+[tool.flwr.app.components]
+serverapp = "project.server_app:app"
+clientapp = "project.client_app:app"
+
+[tool.flwr.app.config]
+num-server-rounds = 5
+fraction-evaluate = 0.5
+fraction-train = 1.0     # All clients participate to reduce noise
+local-epochs = 2         # Minimize local drift
+min-available-clients = 10
+learning-rate = 0.01
+batch-size = 64
+model-type = "resnet"
+strategy = "fedavg"
+proximal-mu = 0.1        # Relax constraint for faster convergence
+partition-alpha = 0.5    # Lower alpha = focused partitions. Keeps more data when filtering.
+
+[tool.flwr.federations]
+default = "local-simulation"
+
+[tool.flwr.federations.local-simulation]
+options.num-supernodes = 10
+options.actor-concurrency = 1

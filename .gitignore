@@ -1,0 +1,23 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+.venv/
+venv/
+*.egg-info/
+
+# Flower
+.flower/
+
+# Generated experiment artifacts (see README for how to reproduce)
+federated/models/
+federated/logs/
+federated/experiment_configs/
+federated/metrics_plots/
+federated/client_distributions/
+federated/best_metrics_log.txt
+federated/data/
+streaming/*.png
+*.pt
+*.log
