@@ -7,6 +7,10 @@ Machine learning when the data cannot sit still: federated training over Non-IID
 ![Flower](https://img.shields.io/badge/Flower-1.23%2B-purple)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+![FedAvg vs FedProx accuracy (CNN, Non-IID)](docs/figures/accuracy_comparison_cnn.png)
+
+Global test accuracy per round of a CNN trained over 10 Non-IID clients that never share their data: FedProx against FedAvg.
+
 ## Overview
 
 Two self-contained projects that drop the classic assumptions of centralized, i.i.d., batch machine learning:
@@ -26,8 +30,6 @@ Each experiment runs both strategies back to back under identical conditions and
 | ResNet-18 (pretrained) | 5 | IID | **0.8899** | 0.8714 |
 
 The pattern is the interesting part: FedProx's proximal term, which penalizes local updates for drifting away from the global model, clearly pays off under heterogeneity (+6 points on the Non-IID CNN), but buys nothing under IID partitions, where the pretrained backbones converge in a handful of rounds and plain FedAvg edges it out.
-
-![FedAvg vs FedProx accuracy (CNN, Non-IID)](docs/figures/accuracy_comparison_cnn.png)
 
 ### Simulating heterogeneity
 
